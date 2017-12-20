@@ -19,7 +19,7 @@ ui <- tagList(
 	fluidPage(
 		withMathJax(),
 		div(
-			h4("Surprising Behaviour of Distance Metrics in High Dimensions"),
+			h4("Surprising Behaviour of Distance Metrics in High Dimensions", align="center"),
 			br(),
 			br(),
 			p("The standard way of measuring distance between two \\(d\\)-dimensional points, \\((x_1, x_2, ..., x_d)\\) and \\((y_1, y_2, ..., y_d)\\), is \\[\\sqrt{\\sum\\limits_{i=i}^d (x_i - y_i)^2}.\\]"),
@@ -30,7 +30,7 @@ ui <- tagList(
 			p("Note: These are independenet reproductions of the results from", a("On the Surprising Behavior of Distance Metrics in High Dimensional Space by Charu C. Aggarwal, Alexander Hinneburg, and Daniel A. Keim.", href="http://users.informatik.uni-halle.de/~hinnebur/PS_Files/icdt2001b.pdf", target="_blank")),
 			br(),
 			br(),
-			actionButton(inputId="startButton", label="Start"),
+			div(actionButton(inputId="startButton", label="Start"), id="startButtonContainer"),
 			id="intro"
 		),
 		sidebarLayout(
@@ -60,8 +60,8 @@ ui <- tagList(
 					h5("Difference Plot"),
 					HTML(
 						"<ul class='plotInfo'>
-							<li>Norms with \\(p < 1\\) increase in an exponential manner</li>
-							<li>Norms with \\(1 \\le p < 2\\) increase in a logarithmic manner</li>
+							<li>Norms with \\(p \\le 0.6\\) increase in an exponential manner</li>
+							<li>Norms with \\(0.6 < p < 2\\) increase in a logarithmic manner</li>
 							<li>Norms with \\(p\\) close to 2 increase quickly and then level off</li>
 							<li>Norms with \\(p > 2\\) decrease </li>
 						</ul>"
@@ -91,8 +91,8 @@ server <- function(input, output, session){
 
 	observeEvent(input$startButton, {
 		# Update norm checkbox group
-		updateCheckboxGroupInput(session, inputId="currNorms", label="", choices=norms, selected=norms, inline=TRUE)
-		
+		updateCheckboxGroupInput(session, inputId="currNorms", label="", choices=norms, selected=selectedNorms, inline=TRUE)
+
 		# Disable start button and run simulations
 		shinyjs::addClass(selector="html", class="waiting")
 		shinyjs::disable("startButton")
@@ -108,7 +108,7 @@ server <- function(input, output, session){
 	})
 
 	output$ratioPlot <- renderPlot({
-		if (!rValues$simDone || length(norms) == 0){
+		if (!rValues$simDone || length(selectedNorms) == 0){
 			return(NULL)
 		}
 
@@ -116,7 +116,7 @@ server <- function(input, output, session){
 	})
 
 	output$diffFacet <- renderPlot({
-		if (!rValues$simDone || length(norms) == 0){
+		if (!rValues$simDone || length(selectedNorms) == 0){
 			return(NULL)
 		}
 
@@ -139,7 +139,7 @@ server <- function(input, output, session){
 		if (validNorm$valid){
 			updateNorms(input, add=TRUE)
 			runSimulations()
-			updateCheckboxGroupInput(session, inputId="currNorms", label="", choices=norms, selected=norms, inline=TRUE)
+			updateCheckboxGroupInput(session, inputId="currNorms", label="", choices=norms, selected=selectedNorms, inline=TRUE)
 		}else{
 			shinyjs::addClass("normVal", "normErrorInput")
 			shinyjs::html("normError", validNorm$msg)

@@ -39,7 +39,7 @@ runSimulations <- function(){
 getData <- function(results){
 	allData <- data.frame()
 
-	for (norm in names(norms)){
+	for (norm in names(selectedNorms)){
 		tempData <- data.frame(result=results[[norm]], dimension=dims, norm=norm, row.names=NULL)
 		allData <- rbind(allData, tempData)
 	}
@@ -84,17 +84,22 @@ plotDifferences <- function(){
 updateNorms <- function(input, add=FALSE){
 	if (add){
 		newLabel <- paste0("L", isolate(input$normVal))
+
 		norms <<- c(norms, isolate(as.numeric(input$normVal)))
 		names(norms)[length(norms)] <<- newLabel
 		norms <<- sort(norms)
+
+		selectedNorms <<- c(selectedNorms, isolate(as.numeric(input$normVal)))
+		names(selectedNorms)[length(selectedNorms)] <<- newLabel
+		selectedNorms <<- sort(selectedNorms)
 	}else{
 		if (!is.null(isolate(input$currNorms))){
 			labels <- paste0("L", isolate(input$currNorms))
-			norms <<- as.numeric(isolate(input$currNorms))
-			names(norms) <<- labels
-			norms <<- sort(norms)
+			selectedNorms <<- as.numeric(isolate(input$currNorms))
+			names(selectedNorms) <<- labels
+			selectedNorms <<- sort(selectedNorms)
 		}else{
-			norms <<- NULL
+			selectedNorms <<- NULL
 		}
 	}
 }

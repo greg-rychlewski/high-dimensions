@@ -3,6 +3,7 @@ numRuns <- 500 # Number of simulations
 numObs <- 50 # Number of observations per simulation
 dims <- c(2, 3, 5, 10, 20, 30, 40, 50) # Dimension of sample space
 norms <- c("L0.5"=0.5, "L1"=1, "L2"=2, "L3"=3) # Type of norm used to calculate distances
+selectedNorms <- c("L0.5"=0.5, "L1"=1, "L2"=2, "L3"=3) # Norms to be displayed on plots
 avgRatio <- lapply(norms, function(norm) numeric()) # Average ratio of max distance to min distance from origin over all simulations
 avgDiff <- lapply(norms, function(norm) numeric()) # Average difference between max distance and min distance from origin over all simulations
 

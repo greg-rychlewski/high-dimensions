@@ -11,6 +11,10 @@ cssStyles <- function(){
 			background-color: #000;
 		}
 
+		h4{
+			text-align: center;
+		}
+
 		a, a:hover, a:focus, a:active{
 			font-style: italic;
 			color: #fff;
@@ -34,6 +38,9 @@ cssStyles <- function(){
 		.plotInfo{
 			text-align: left;
 			font-size: 12px;
+			padding: 0 15px 0 15px;
+			margin: 0;
+			width: 100%;
 		}
 
 		/* User Input */
@@ -47,6 +54,11 @@ cssStyles <- function(){
 			padding-top: 15px;
 			padding-left: 45px;
 			padding-right: 45px;
+			text-align: justify;                                   
+		}
+
+		#startButtonContainer{
+			text-align: center;
 		}
 
 		#newNormGroup > .form-group, #addNorm, #normVal{
