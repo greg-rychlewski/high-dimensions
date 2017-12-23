@@ -32,7 +32,7 @@ cssStyles <- function(){
 		#sideBar{
 			background-color: #303030;
 			color: #fff;
-			border: 1px solid #f0f0f0;
+			border: 2px solid #f0f0f0;
 		}
 
 		.plotInfo{
@@ -46,7 +46,7 @@ cssStyles <- function(){
 		/* User Input */
 		#intro{
 			background-color: #303030;
-			border: 1px solid #f0f0f0;
+			border: 2px solid #f0f0f0;
 			color: #fff;
 			border-radius: 3px;
 			width: 70%;
@@ -93,6 +93,7 @@ cssStyles <- function(){
 			padding: 15px;
 			background-color: #444;
 			border-radius: 3px;
+			border: 2px solid #333;
 		}
 
 		#ratioPlot > img:hover, #diffFacet > img:hover{
