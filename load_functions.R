@@ -73,7 +73,7 @@ plotDifferences <- function(){
 	diffPlot <- diffPlot + facet_grid(norm ~ ., scales="free_y")
 	diffPlot <- diffPlot + theme(strip.text.y = element_text(size=12, face="bold"))
 	diffPlot <- diffPlot + xlab("Dimension") + ylab("Farthest Point - Closest Point") 
-	diffPlot <- diffPlot + ggtitle("Difference between Distances")
+	diffPlot <- diffPlot + ggtitle("Difference Between Distances")
 	diffPlot <- diffPlot + theme(plot.title=element_text(hjust=0.5, size=plotTitleSize))
 	diffPlot <- diffPlot + theme(axis.text=element_text(size=axisLabelSize), axis.title=element_text(size=axisTitleSize))
 	diffPlot <- diffPlot + theme(legend.title=element_blank(), legend.position=legendPos, legend.text=element_text(size=legendSize))
