@@ -54,7 +54,6 @@ plotRatios <- function(){
 	ratioPlot <- ggplot(data=ratioData, aes(x=dimension))
 	ratioPlot <- ratioPlot + geom_line(aes(y=result, group=norm, color=norm), size=lineSize)
 	ratioPlot <- ratioPlot + geom_hline(aes(yintercept=1, linetype="Ratio = 1"), size=lineSize, linetype="dotted")
-	#ratioPlot <- ratioPlot + scale_linetype_manual(name="", values=c("Ratio = 1"="dotted"))
 	ratioPlot <- ratioPlot + xlab("Dimension") + ylab("Farthest Point / Closest Point") 
 	ratioPlot <- ratioPlot + scale_y_continuous(breaks=c(0, 1, seq(from=5, to=max(ratioData$result), by=5)))
 	ratioPlot <- ratioPlot + theme(plot.title=element_text(hjust=0.5))
