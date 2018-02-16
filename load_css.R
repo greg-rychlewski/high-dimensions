@@ -49,11 +49,12 @@ cssStyles <- function(){
 			border: 2px solid #f0f0f0;
 			color: #fff;
 			border-radius: 3px;
-			width: 70%;
+			width: 95%;
+			max-width: 800px;
 			padding-bottom: 25px;
 			padding-top: 15px;
-			padding-left: 45px;
-			padding-right: 45px;
+			padding-left: 30px;
+			padding-right: 30px;
 			text-align: justify;                                   
 		}
 
@@ -109,5 +110,4 @@ cssStyles <- function(){
 		.shiny-notification-close{
 			color: #fff;
 		}"
-	)
-)}
+))}
