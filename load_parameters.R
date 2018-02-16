@@ -12,6 +12,7 @@ legendPos <- "bottom"
 legendSize <- 12
 axisLabelSize <- 12 
 axisTitleSize <- 14
+plotTitleSize <- 14
 lineSize <- 1 
 legendBoxSize <- 2 
 plotWidth <- "80%" 
