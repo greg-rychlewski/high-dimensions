@@ -8,8 +8,6 @@
 
 ##### Preliminaries #####
 source("load_dependencies.R")
-source("load_parameters.R")
-source("load_functions.R")
 source("load_css.R")
 
 ##### User Interface #####
@@ -48,7 +46,7 @@ ui <- tagList(
 						"Filter Metrics",
 						id="filterLabel"
 					),
-					checkboxGroupInput(inputId="currNorms", label="", choices=norms, selected=norms, inline=TRUE),
+					checkboxGroupInput(inputId="currNorms", label="", choices=NULL, selected=NULL, inline=TRUE),
 					br(),
 					h5("Ratio Plot"),
 					HTML(
@@ -72,10 +70,10 @@ ui <- tagList(
 			),
 			mainPanel(
 				div(
-					plotOutput(outputId="ratioPlot", width=plotWidth),
+					plotOutput(outputId="ratioPlot"),
 					br(),
 					br(),
-					plotOutput(outputId="diffFacet", width=plotWidth)
+					plotOutput(outputId="diffFacet")
 				),
 				width=9,
 				id="mainBar"
@@ -87,8 +85,14 @@ ui <- tagList(
 
 ##### Server Functionality #####
 server <- function(input, output, session){
+	# Reactive values
 	rValues <- reactiveValues(simDone=FALSE)
 
+	# Load functions and parameters
+	source("load_parameters.R", local=TRUE)
+	source("load_functions.R", local=TRUE)
+
+	# Event listeners
 	observeEvent(input$startButton, {
 		# Update norm checkbox group
 		updateCheckboxGroupInput(session, inputId="currNorms", label="", choices=norms, selected=selectedNorms, inline=TRUE)
